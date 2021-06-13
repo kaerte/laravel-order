@@ -35,10 +35,12 @@ class OrderTest extends TestCase
 
     public function test_order_has_basket(): void
     {
+        //todo create from service?
         $order = new Order();
-        $order->total = $this->basket->total;
-        $order->basket()->associate($this->basket);
+        $order->saveQuietly();
 
+        $order->basket()->save($this->basket);
+        $order->total = $this->basket->total;
         $order->save();
 
         self::assertInstanceOf(BasketModel::class, $order->basket);

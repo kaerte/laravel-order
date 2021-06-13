@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Ctrlc\Order\Models;
 
 use Ctrlc\Basket\Models\Basket;
+use Ctrlc\Basket\Traits\HasBasket;
 use Ctrlc\Order\Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
     use HasFactory;
+    use HasBasket;
 
     protected $casts = [
         'basket_snapshot' => 'array',
@@ -25,11 +26,6 @@ class Order extends Model
         $order->save();
 
         return $order;
-    }
-
-    public function basket(): BelongsTo
-    {
-        return $this->belongsTo(Basket::class);
     }
 
     protected static function newFactory(): OrderFactory
