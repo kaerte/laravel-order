@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ctrlc\Order\Tests;
 
-use CreateUsersTable;
+use Ctrlc\Basket\Providers\BasketServiceProvider;
 use Ctrlc\Order\Providers\OrderServiceProvider;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -13,17 +13,19 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         parent::setUp();
         $this->loadMigrationsFrom(__DIR__.'../database/migrations');
-        $this->loadMigrationsFrom(__DIR__.'../migrations');
+        $this->loadLaravelMigrations();
     }
 
     protected function getPackageProviders($app): array
     {
-        return [OrderServiceProvider::class];
+        return [
+            OrderServiceProvider::class,
+            BasketServiceProvider::class,
+        ];
     }
 
-    protected function getEnvironmentSetUp($app): void
+    protected function defineDatabaseMigrations()
     {
-        include_once __DIR__.'/migrations/2014_10_12_000000_create_users_table.php';
-        (new CreateUsersTable())->up();
+        $this->loadMigrationsFrom(__DIR__.'../migrations');
     }
 }
