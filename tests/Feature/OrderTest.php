@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ctrlc\Order\Tests\Feature;
 
-use Ctrlc\Basket\Facades\Basket;
-use Ctrlc\Basket\Models\Basket as BasketModel;
+use Ctrlc\Cart\Facades\Cart;
+use Ctrlc\Cart\Models\Cart as CartModel;
 use Ctrlc\Order\Models\Order;
 use Ctrlc\Order\Tests\TestCase;
 use Ctrlc\Order\Tests\User;
@@ -17,7 +17,7 @@ class OrderTest extends TestCase
 
     public User $productable;
 
-    public BasketModel $basket;
+    public CartModel $cart;
 
     protected function setUp(): void
     {
@@ -26,26 +26,27 @@ class OrderTest extends TestCase
         $this->productable = User::factory()
             ->hasVariants(1, [
                 'default' => 1,
+                'quantity' => 10,
             ])
             ->create();
-
-        $productVariant = $this->productable->defaultVariant;
-        $this->basket = Basket::add($productVariant)->add($productVariant);
     }
 
     public function test_order_has_basket(): void
     {
+        $productVariant = $this->productable->defaultVariant;
+        $cart = Cart::add($productVariant)->add($productVariant);
+
         //todo create from service?
         $order = new Order();
         $order->saveQuietly();
 
-        $order->basket()->save($this->basket);
-        $order->total = $this->basket->total;
+        $order->cart()->save($cart);
+        $order->total = $cart->total;
         $order->save();
 
-        self::assertInstanceOf(BasketModel::class, $order->basket);
-        self::assertIsArray($order->basket_snapshot);
-        self::assertNotEmpty($order->basket_snapshot);
-        self::assertEquals($order->total, $order->basket->total);
+        self::assertInstanceOf(CartModel::class, $order->cart);
+        self::assertIsArray($order->items_snapshot);
+        self::assertNotEmpty($order->items_snapshot);
+        self::assertEquals($order->total, $order->cart->total);
     }
 }

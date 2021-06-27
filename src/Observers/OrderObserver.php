@@ -12,14 +12,14 @@ class OrderObserver
     public function created(Order $order)
     {
         Log::info('order created', [$order]);
-        $order->basket_snapshot = $order->basket->toArray();
+        $order->items_snapshot = $order->cart->toArray();
         $order->saveQuietly();
     }
 
     public function updated(Order $order)
     {
         Log::info('order updated', [$order]);
-        $order->basket_snapshot = $order->basket->toArray();
+        $order->items_snapshot = $order->cart->toArray();
         $order->saveQuietly();
     }
 

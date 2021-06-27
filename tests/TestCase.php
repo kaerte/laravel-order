@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Ctrlc\Order\Tests;
 
-use Ctrlc\Basket\Providers\BasketServiceProvider;
+use Ctrlc\Cart\Providers\CartServiceProvider;
 use Ctrlc\Order\Providers\OrderServiceProvider;
+use Plank\Metable\MetableServiceProvider;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
-        $this->loadMigrationsFrom(__DIR__.'../database/migrations');
         $this->loadLaravelMigrations();
     }
 
@@ -20,12 +20,8 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             OrderServiceProvider::class,
-            BasketServiceProvider::class,
+            CartServiceProvider::class,
+            MetableServiceProvider::class,
         ];
-    }
-
-    protected function defineDatabaseMigrations()
-    {
-        $this->loadMigrationsFrom(__DIR__.'../migrations');
     }
 }

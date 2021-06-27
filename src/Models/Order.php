@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ctrlc\Order\Models;
 
-use Ctrlc\Basket\Models\Basket;
-use Ctrlc\Basket\Traits\HasBasket;
+use Ctrlc\Cart\Models\Cart;
+use Ctrlc\Cart\Traits\HasCart;
 use Ctrlc\Order\Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,16 +13,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    use HasBasket;
+    use HasCart;
 
     protected $casts = [
-        'basket_snapshot' => 'array',
+        'items_snapshot' => 'array',
     ];
 
-    public static function createFromBasket(Basket $basket): Order
+    public static function createFromCart(Cart $cart): Order
     {
         $order = new self();
-        $order->basket = $basket;
+        $order->cart = $cart;
         $order->save();
 
         return $order;
