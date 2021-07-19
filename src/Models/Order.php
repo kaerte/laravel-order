@@ -27,7 +27,7 @@ class Order extends Model
 
     public static function createFromCart(Cart $cart): Order
     {
-        if (!$cart->items()->exists()) {
+        if ($cart->isEmpty()) {
             throw new \InvalidArgumentException('Order cannot be created from an empty cart');
         }
         

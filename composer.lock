@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kaerte/ctrlc-laravel-basket.git",
-                "reference": "b4aaaffbbd22cb0cbbc9cead701af64c9f8fc213"
+                "reference": "c2b6a207139598e1fd0e3525a61b759dd194bb10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kaerte/ctrlc-laravel-basket/zipball/b4aaaffbbd22cb0cbbc9cead701af64c9f8fc213",
-                "reference": "b4aaaffbbd22cb0cbbc9cead701af64c9f8fc213",
+                "url": "https://api.github.com/repos/kaerte/ctrlc-laravel-basket/zipball/c2b6a207139598e1fd0e3525a61b759dd194bb10",
+                "reference": "c2b6a207139598e1fd0e3525a61b759dd194bb10",
                 "shasum": ""
             },
             "require": {
@@ -116,7 +116,7 @@
                 "issues": "https://github.com/kaerte/ctrlc-laravel-basket/issues",
                 "source": "https://github.com/kaerte/ctrlc-laravel-basket/tree/main"
             },
-            "time": "2021-07-18T10:51:50+00:00"
+            "time": "2021-07-19T19:44:10+00:00"
         },
         {
             "name": "ctrlc/laravel-discount-code",
