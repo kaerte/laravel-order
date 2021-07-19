@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ctrlc\Order\Tests;
 
 use Ctrlc\Cart\Providers\CartServiceProvider;
+use Ctrlc\DiscountCode\Providers\DiscountCodeServiceProvider;
 use Ctrlc\Order\Providers\OrderServiceProvider;
 use Plank\Metable\MetableServiceProvider;
 
@@ -22,6 +23,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             OrderServiceProvider::class,
             CartServiceProvider::class,
             MetableServiceProvider::class,
+            DiscountCodeServiceProvider::class,
         ];
     }
 }
