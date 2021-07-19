@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Ctrlc\Order\Providers;
 
-use Ctrlc\Order\Models\Order;
-use Ctrlc\Order\Observers\OrderObserver;
 use Illuminate\Support\ServiceProvider;
 
 class OrderServiceProvider extends ServiceProvider
@@ -18,7 +16,5 @@ class OrderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations/2020_01_01_000001_create_orders_table.php');
-
-        Order::observe(OrderObserver::class);
     }
 }
