@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ctrlc\Order\Tests;
 
-use Ctrlc\Cart\Traits\HasCart;
+use Ctrlc\Cart\Traits\Cartable;
 use Ctrlc\Cart\Traits\Productable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
-    use HasCart;
+    use Cartable;
     use Productable;
 
     protected $guarded = [];
