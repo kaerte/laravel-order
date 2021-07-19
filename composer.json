@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": "^8.0.1",
-        "ctrlc/laravel-basket": "dev-main"
+        "ctrlc/laravel-basket": "dev-main",
+        "spatie/laravel-enum": "^2.5"
     },
     "autoload": {
         "psr-4": {
