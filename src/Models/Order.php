@@ -40,8 +40,8 @@ class Order extends Model
       
         return $order;
     }
-    
-    public function submittable(): MorphTo
+
+    public function orderable(): MorphTo
     {
         return $this->morphTo();
     }

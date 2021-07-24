@@ -16,7 +16,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class EventsTest extends TestCase
 {
     use RefreshDatabase;
-    use HasCart;
+    use CreatesProductableAndCart;
 
     public function test_created_event_dispatched(): void
     {

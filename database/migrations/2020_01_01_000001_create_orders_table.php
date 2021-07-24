@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->integer('total')->unsigned()->nullable();
             $table->enum('status', [Status::toValues()])->default(Status::PENDING());
             $table->text('cart_snapshot')->nullable();
-            $table->nullableMorphs('submittable');
+            $table->nullableMorphs('orderable');
         });
     }
 

@@ -7,7 +7,7 @@ namespace Ctrlc\Order\Tests\Feature;
 use Ctrlc\Cart\Facades\Cart;
 use Ctrlc\Order\Tests\User;
 
-trait HasCart
+trait CreatesProductableAndCart
 {
     public function getCart()
     {

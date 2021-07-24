@@ -13,7 +13,7 @@ use InvalidArgumentException;
 class CreateFromCartTest extends TestCase
 {
     use RefreshDatabase;
-    use HasCart;
+    use CreatesProductableAndCart;
     
     public function test_create_order_from_cart(): void
     {
