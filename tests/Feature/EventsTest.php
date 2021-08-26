@@ -23,7 +23,6 @@ class EventsTest extends TestCase
         Event::fake();
 
         $order = Order::createFromCart($this->getCart());
-        $order->cancel();
         
         Event::assertDispatched(OrderCreated::class, function ($event) use ($order) {
             return $event->order->id === $order->id;
@@ -40,6 +39,8 @@ class EventsTest extends TestCase
         Event::assertDispatched(OrderCompleted::class, function ($event) use ($order) {
             return $event->order->id === $order->id;
         });
+        
+        self::assertNotNull($order->completed_at);
     }
     
     public function test_canceled_event_dispatched(): void
@@ -52,6 +53,8 @@ class EventsTest extends TestCase
         Event::assertDispatched(OrderCancelled::class, function ($event) use ($order) {
             return $event->order->id === $order->id;
         });
+
+        self::assertNotNull($order->canceled_at);
     }
 
     public function test_archived_event_dispatched(): void
@@ -64,5 +67,7 @@ class EventsTest extends TestCase
         Event::assertDispatched(OrderArchived::class, function ($event) use ($order) {
             return $event->order->id === $order->id;
         });
+
+        self::assertNotNull($order->archived_at);
     }
 }

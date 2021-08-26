@@ -25,6 +25,15 @@ class Order extends Model
         'cart_snapshot' => 'array',
     ];
 
+    protected $dates = [
+        'archived_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'completed_at',
+        'canceled_at',
+    ];
+    
     public static function createFromCart(Cart $cart): Order
     {
         if ($cart->isEmpty()) {
@@ -54,6 +63,7 @@ class Order extends Model
     public function complete(): self
     {
         $this->status = Status::COMPLETED();
+        $this->completed_at = now();
         $this->save();
 
         event(new OrderCompleted($this));
@@ -64,6 +74,7 @@ class Order extends Model
     public function cancel(): self
     {
         $this->status = Status::CANCELLED();
+        $this->canceled_at = now();
         $this->save();
 
         event(new OrderCancelled($this));
@@ -74,6 +85,7 @@ class Order extends Model
     public function archive(): self
     {
         $this->status = Status::ARCHIVED();
+        $this->archived_at = now();
         $this->save();
 
         event(new OrderArchived($this));

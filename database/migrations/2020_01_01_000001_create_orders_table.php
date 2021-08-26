@@ -14,6 +14,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
+            $table->timestamp('archived_at')->nullable();
+            $table->timestamp('completed_at')->nullable();
+            $table->timestamp('canceled_at')->nullable();
             $table->integer('total')->unsigned()->nullable();
             $table->enum('status', [Status::toValues()])->default(Status::PENDING());
             $table->text('cart_snapshot')->nullable();
